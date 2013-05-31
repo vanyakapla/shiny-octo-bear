@@ -1,8 +1,16 @@
+<?php
+	$user = new user();
+	if(!empty($_POST)){
+		
+		$user->checklogin();
+	}
+?>
+
 <p class="text">
 	U moet eerst inloggen om verder te kunnen gaan.
 </p>
 
-<form  method="post" action="config/checklogin.php" >
+<form  method="post" action="#" >
 	<table id="login">
 		<tr>
 			<th>
