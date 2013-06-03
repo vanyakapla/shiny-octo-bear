@@ -4,6 +4,7 @@
 	<link rel="stylesheet" type="text/css" href="library/css/style.css">
 	<script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
 	<script src="library/js/cart_add.js"></script>
+	
 </head>
 <body>
 	<div id="outer">

@@ -1,21 +1,42 @@
 <?php
 	class shopping_cart {
 		function addcart(){
+			session_start();
 			include("connect_db.php");
 			include("dbug.php");
 			$product_id = $_GET['id'];
-			$sqlproducts2 = "SELECT * FROM tbl_products WHERE id = ". $product_id ." ";
 
-		    $resultproducts2 = mysql_query($sqlproducts2) 
-		   		or die(mysql_error());
+			$shoppingcart = "insidecart_" . $product_id;
 
-		   	$array = mysql_fetch_assoc($resultproducts2);
-		   	echo json_encode($array);
+		   	if(isset($_SESSION[$shoppingcart])){
+		   		$amount = $_SESSION[$shoppingcart]['amount'] + 1;
+		   		$productarray = array(
+			   		"product_id" => $product_id,
+			   		"amount" => $amount,
+			   		);
+		   	}else{
+			   	$productarray = array(
+			   		"product_id" => $product_id,
+			   		"amount" => 1,
+			   		);
+			}
 
-		   	echo $array['name'];
+		   	$_SESSION[$shoppingcart] = $productarray;
 
-		   	new dBug($array);
+		   	if(isset($_SESSION["cartcounter"])){
+		   		$_SESSION["cartcounter"] = $_SESSION["cartcounter"] + 1;
 
+		   	}else{
+		   		$_SESSION["cartcounter"] = 1;
+		   	}
+		   	?>
+		   	<html>
+			   	<script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+			   	<script type="text/javascript">
+			   		$('#menu').remove;
+			   	</script>
+			</html>
+		   	<?php
 		}
 	}
 ?>
